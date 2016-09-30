@@ -7522,7 +7522,7 @@ CbcModel::synchronizeHandlers(int /*makeDefault*/)
     bool defaultHandler = defaultHandler_;
     if (!defaultHandler_) {
         // Must have clone
-        handler_ = handler_->clone();
+        //handler_ = handler_->clone();
         defaultHandler_ = true;
     }
 #ifdef COIN_HAS_CLP
