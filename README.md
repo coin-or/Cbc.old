@@ -1,4 +1,4 @@
-# CBC Version 2.9.8 README
+# CBC Version 2.9.9 README
 
 Welcome to the README for the COIN Branch and Cut Solver (CBC). CBC is
 distributed under the Eclipse Public License and is freely redistributable.
