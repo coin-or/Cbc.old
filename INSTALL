@@ -43,8 +43,8 @@ Cbc package in three ways:
    execute
 
    cd Cbc-2.9
-   git clone --branch=stable/0.8 https://github.com/coin-or/BuildTools
-   BuildTools/get.dependencies fetch
+   git clone --branch=stable/0.8 https://github.com/coin-or-tools/BuildTools.git
+   BuildTools/get.dependencies.sh fetch
 
 3. Download the tarball from http://www.coin-or.org/download/source/Cbc 
    and extract it. For example, for the release 2.7.0 you type
