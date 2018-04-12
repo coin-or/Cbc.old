@@ -89,7 +89,14 @@ extern "C" {
     COINLIBAPI int COINLINKAGE
     Cbc_readLp(Cbc_Model * model, const char *filename)
     ;
-    /** Provide an initial feasible solution to accelerate branch-and-bound 
+    /** Add rows */
+    COINLIBAPI void COINLINKAGE Clp_addRows(Cbc_Model * model, int number,
+                                    const double * rowLower, const double * rowUpper,
+                                    const CoinBigIndex * rowStarts, const int * columns,
+                                    const double * elements)
+    ;
+
+    /** Provide an initial feasible solution to accelerate branch-and-bound
      Note that feasibility of the solution is *not* verified.
     */
     COINLIBAPI void COINLINKAGE

@@ -16,6 +16,7 @@
 
 #include "CoinMessageHandler.hpp"
 #include "OsiClpSolverInterface.hpp"
+#include "CoinPackedVector.hpp"
 
 //  bobe including extras.h to get strdup()
 #if defined(__MWERKS__)
@@ -369,6 +370,41 @@ Cbc_readLp(Cbc_Model * model, const char *filename)
 
     if (VERBOSE > 0) printf("%s return %i\n", prefix, result);
     return result;
+}
+
+COINLIBAPI void COINLINKAGE
+Cbc_addRows(Cbc_Model * model, int number,
+const double * rowLower, const double * rowUpper,
+const CoinBigIndex * rowStarts, const int * columns,
+const double * elements)
+{
+    OsiSolverInterface * solver = model->model_->solver();
+
+    CoinPackedVector * rows[number], cr;
+
+    double * e=(double *)elements;
+    CoinBigIndex * idx=(CoinBigIndex *)rowStarts;
+
+    for (int i=0; i<number; i++)
+    {
+        int size= columns[i]; // column element size
+        cr= (rows[i]= new CoinPackedVector());
+        for (int j=0; j<size; j++)
+        {
+            cr.insert(*(idx++),*(e++));
+        }
+    }
+
+    solver->addRows(number, (const CoinBigIndex * const *)rows, rowLower, rowUpper);
+    /**
+     * virtual void addRows(const int numrows,
+                       const CoinPackedVectorBase * const * rows,
+                       const double* rowlb, const double* rowub);
+      virtual void addRows(const int numrows,
+                     const CoinPackedVectorBase * const * rows,
+                     const char* rowsen, const double* rowrhs,
+                     const double* rowrng);
+                     */
 }
 
 
