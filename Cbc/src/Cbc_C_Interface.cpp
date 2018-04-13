@@ -756,7 +756,8 @@ Cbc_clone(Cbc_Model * model)
     result->cmdargs_   = model->cmdargs_;
 
     if (VERBOSE > 0) printf("%s return\n", prefix);
-    return model;
+    //return model;
+    return result;
 }
 /** Set this the variable to be continuous */
 COINLIBAPI void COINLINKAGE
